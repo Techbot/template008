@@ -1,0 +1,159 @@
+/*
+Anything between these special tags is a comment
+And is just ignored by your web browser
+Comments are useful to remind yourself how things work
+*/
+
+body {
+    font-size:0.9em;
+    font-family: cursive;
+    width: 50em;
+    background-color: #E8F3C7;
+}
+
+h1, h2 {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    font-family: cursive;
+    clear: both;
+    color: green;
+}
+
+h1 {
+    font-size:2em;
+    text-shadow: 0.1em 0.1em 0.1em #888;
+}
+
+
+h2 {
+    font-size:1.8em;
+}
+
+
+h3 {
+    font-size:1em;
+    padding-bottom: 0.3em;
+    clear: both;
+}
+
+img {
+    width: 10em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    float: left;
+    box-shadow: 0.4em 0.4em 0.3em #888;
+    border: 0.4em solid green;
+    
+}
+
+ul {
+   overflow: hidden;
+}
+
+.main-picture {
+    width: 15em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    float: left;
+    box-shadow: 0.4em 0.4em 0.3em #888;
+    border: 0.4em solid green;
+    
+}
+
+table img {
+    width: 10em;
+    margin: 0.4em;
+    border: 0.3em solid green;
+    box-shadow: 0.4em 0.4em 0.3em #888;
+}
+
+table {
+    width: 10em;
+    padding: 0em;
+    border:  0.1em solid grey;
+    background-color: green;
+    font-size:1em;
+}
+
+tr {
+    background-color: #CFE0A0;
+}
+
+td, th {
+    border: 0.1em Solid white !important;
+    text-align: center;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+/* Main Menu */
+
+.main-menu, .favourites {
+    font-size:1.5em;
+}
+
+.main-menu li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: green;
+}
+
+.main-menu li a:hover {
+    color: white;
+    background-color: gray;
+}
+
+/* Top Menu */
+
+.top-menu {
+    float: left;
+    padding: 0em;
+    margin: 0em;
+    background-color: #CFE0A0;
+    border-top: 0.1em solid green;
+    border-bottom: 0.1em solid green;
+    border-left: 0.1em solid green;
+    margin-bottom: 1em;
+}
+	
+.top-menu {	
+    list-style-type: none;  
+	 	padding: 0em;
+    margin: 0em;
+}
+
+.top-menu li {
+    float: left;
+}
+
+.top-menu li a {
+    color: green;
+    display: block;
+    padding: 10px;
+    margin: 0px;
+    text-decoration: none;
+    font-weight: bold;
+    border-right: 0.1em solid green;
+}
+
+.top-menu li a:hover {
+    color: white;
+    background-color: gray;
+}
+
+.top-menu li.selected a:hover {
+    color: white;
+    background-color: black;
+}
+
+.top-menu li.selected {
+    background-color: black;
+}
+
+.top-menu li.selected a {
+    color: white;
+}
