@@ -1,4 +1,4 @@
 template008
 ===========
 
-Simple Canas Game Re-edit
+Simple Canvas Game Re-edit

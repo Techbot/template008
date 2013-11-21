@@ -104,18 +104,6 @@ var render = function () {
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 	ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
-	
-	// co-ordinates
-	ctx.fillStyle = "rgb(250, 250, 250)";
-	ctx.font = "24px Helvetica";
-	ctx.textAlign = "left";
-	ctx.textBaseline = "top";
-	ctx.fillText("x: " + parseint(hero.x) + "y:" + parseint(hero.y), 232, 32);
-	
-	
-	
-	
-	
 };
 
 // The main game loop
