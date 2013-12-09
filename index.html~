@@ -1,0 +1,10 @@
+<html>
+    <head>
+    </head>
+
+    <body>
+        <a href = "master/index.html">Original by Lost Decade Games</a><br />
+        <a href = "variation001/index.html">Variation001 - Simple display of hero's x and y co-ordinates</a><br />
+        <a href = "variation002/index.html">Variation002 - Hero can shoot</a><br />
+    </body>
+</html>

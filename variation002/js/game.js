@@ -3,8 +3,11 @@ var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 480;
+var distance =0;
 document.body.appendChild(canvas);
 var dir = 1;
+var first = true;
+var shoot_update = false;
 
 // Background image
 var bgReady = false;
@@ -22,13 +25,11 @@ heroImage.onload = function () {
 };
 heroImage.src = "images/hero.png";
 
-
-
 // Bullet image
 var bulletReady = false;
 var bulletImage = new Image();
 bulletImage.onload = function () {
-	heroReady = true;
+	//bulletReady = true;
 };
 bulletImage.src = "images/bullet.png";
 
@@ -45,16 +46,18 @@ var hero = {
 	speed: 256 // movement in pixels per second
 };
 
-
 var bullet = {
 	speed: 256 // movement in pixels per second
 };
 
-
+var origin = {
+	
+};
 
 var monster = {};
-var monstersCaught = 0;
 
+var monstersCaught = 0;
+var monstersShot = 0;
 // Handle keyboard controls
 var keysDown = {};
 
@@ -95,8 +98,19 @@ var update = function (modifier) {
 		dir=4;
 	}
 	
-	if (39 in keysDown) { // Player holding space
-		shoot();
+	if (32 in keysDown) { // Player holding space
+		bulletReady = true;
+		bullet.x = hero.x;
+        bullet.y = hero.y;
+        
+   		
+   		if(first ==true)
+   		{ 
+       		origin.x = hero.x;
+            origin.y = hero.y;
+            first = false ;    
+        }
+		//alert ('spacebar');
 	}
 	
 	// Are they touching?
@@ -107,42 +121,35 @@ var update = function (modifier) {
 		&& monster.y <= (hero.y + 32)
 	) {
 		++monstersCaught;
+		first=true;
 		reset();
 	}
 };
 
 // shoot addition
-var shoot = function(){
+var shoot = function(modifier){
 
-    bullet.x = hero.x;
-    bullet.y = hero.y;
-
-
-    if (dir=1){
+    if (dir==1){
 
         bullet.y -= bullet.speed * modifier * 4;
-
-
-    }
-    if (dir=2){
-
-        bullet.y -= bullet.speed * modifier * 4;
-
     }
 
-    if (dir=3){
+    if (dir==2){
 
-        bullet.y -= bullet.speed * modifier * 4;
+        bullet.y += bullet.speed * modifier * 4;
+    }
+
+    if (dir==3){
+
+        bullet.x -= bullet.speed * modifier * 4;
+    }
+
+    if (dir==4){
+
+        bullet.x += bullet.speed * modifier * 4;
 
     }
-    if (dir=4){
-
-    bullet.y -= bullet.speed * modifier * 4;
-
-
-    }
-    
-    
+ 
     	// Are they touching2?
 	if (
 		bullet.x <= (monster.x + 32)
@@ -153,60 +160,60 @@ var shoot = function(){
 		++monstersShot;
 		reset();
 	}
-    
-
-    
+   
+   //distance = square root sqrt  of ( (x2-x1)^2 + (y2-y1)^2)
+   
+    var distance = Math.sqrt(    Math.pow(bullet.x-origin.x, 2) + Math.pow(bullet.y - origin.y,2) );
+   
+    if (distance > 200)
+    {
+        bulletReady = false;
+        first = true
+    }
 }
 
-
 // Draw everything
-var render = function () {
-	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0);
-	}
+var render = function ()
+     {
+	    if (bgReady) {
+		    ctx.drawImage(bgImage, 0, 0);
+	    }
 
-	if (heroReady) {
-		ctx.drawImage(heroImage, hero.x, hero.y);
-	    
-	}
+	    if (heroReady) {
+		    ctx.drawImage(heroImage, hero.x, hero.y);
+	    }
 
-	if (monsterReady) {
-		ctx.drawImage(monsterImage, monster.x, monster.y);
-	}
+	    if (monsterReady) {
+		    ctx.drawImage(monsterImage, monster.x, monster.y);
+	    }
 	
-	if (bulletReady) {
-		
-	    ctx.drawImage(bulletImage, bullet.x, bullet.y);
-	}
-
+	    if (bulletReady) {
+	        ctx.drawImage(bulletImage, bullet.x, bullet.y);
+	    }
 
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
 	ctx.font = "24px Helvetica";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
+	ctx.fillText("Goblins caught: " + distance, 32, 32);
 };
 
-// The main game loop
-var main = function () {
-	var now = Date.now();
-	var delta = now - then;
+    // The main game loop
+var main = function ()
+    {
+	    var now = Date.now();
+	    var delta = now - then;
+          
+        shoot(delta / 1000);
+	    update(delta / 1000);
+	
+	    console.log(dir);
+	
+	    render();
 
-	update(delta / 1000);
-	render();
-
-	then = now;
-};
-
-
-
-
-
-
-
-
-
+	    then = now;
+    };
 
 // Let's play this game!
 reset();
